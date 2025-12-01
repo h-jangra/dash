@@ -6,25 +6,41 @@
 }
 
 :root {
-  --primary: oklch(0.9 0.17 100);
-  --bg-dark: oklch(0.1 0 264);
-  --bg: oklch(0.2 0 264);
-  --bg-light: oklch(0.3 0 264);
-  --text: oklch(0.96 0 264);
-  --text-muted: oklch(0.76 0 264);
-  --shadow-s: inset 0 1px 2px #ffffff30, 0 1px 2px #00000030, 0 2px 4px #00000015;
-  --shadow-m: inset 0 1px 2px #ffffff50, 0 2px 4px #00000030, 0 4px 8px #00000015;
-  --shadow-l: inset 0 1px 2px #ffffff70, 0 4px 6px #00000030, 0 6px 10px #00000015;
-  --transition: all 0.3s ease;
+  --primary: hsl(210, 50%, 90%);
+  --secondary: hsl(210, 50%, 10%);
+  --tertiary: hsl(260, 75%, 40%);
+  --accent: hsl(140, 65%, 65%);
+
+  --bg-dark: oklch(0.18 0.04 260);
+  --bg: oklch(0.22 0.04 250);
+  --bg-light: oklch(0.28 0.03 240);
+
+  --shadow-s: inset 0 1px 2px #0002, 0 1px 2px #ffffff20, 0 2px 4px #ffffff60;
+  --shadow-m: inset 0 1px 2px #0003, 0 2px 4px #ffffff20, 0 4px 8px #ffffff60;
+  --shadow-l: inset 0 1px 2px #0003, 0 4px 6px #ffffff20, 0 6px 10px #ffffff60;
+
+  --text: oklch(0.95 0.02 264);
+  --text-muted: oklch(0.75 0.01 264);
+
+  --transition: all 0.25s ease;
 }
 
 body.light {
-  --primary: oklch(0.65 0.15 264);
-  --bg-dark: oklch(0.92 0 264);
-  --bg: oklch(0.96 0 264);
-  --bg-light: oklch(1 0 264);
-  --text: oklch(0.15 0 264);
-  --text-muted: oklch(0.4 0 264);
+  --primary: hsl(210, 50%, 10%);
+  --secondary: hsl(210, 50%, 90%);
+  --tertiary: hsl(260, 80%, 80%);
+  --accent: hsl(140, 80%, 30%);
+
+  --bg-dark: oklch(0.92 0.03 220);
+  --bg: oklch(0.97 0.02 230);
+  --bg-light: oklch(1 0.02 210);
+
+  --shadow-s: inset 0 1px 2px #ffffff20, 0 1px 2px #0002, 0 2px 4px #0001;
+  --shadow-m: inset 0 1px 2px #ffffff40, 0 2px 4px #0003, 0 4px 8px #0002;
+  --shadow-l: inset 0 1px 2px #ffffff60, 0 4px 6px #0003, 0 6px 10px #0002;
+
+  --text: oklch(0.15 0.02 264);
+  --text-muted: oklch(0.35 0.01 264);
 }
 
 body {
@@ -49,11 +65,12 @@ a {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   transition: var(--transition);
-  &:hover,:focus{
-    outline: 2px solid var(--primary);
-    background: var(--primary);
-    color: var(--bg-dark);
-  }
+}
+a:hover,
+a:focus {
+  outline: 2px solid var(--primary);
+  background: var(--primary);
+  color: var(--bg-dark);
 }
 
 button {
@@ -62,15 +79,19 @@ button {
   border-radius: 1rem;
   background: var(--bg);
   color: var(--text);
-  corner-shape:squircle;
   padding: 0.5rem 1rem;
   transition: var(--transition);
   font-size: 1rem;
-  &.active{
-    background-color:var(--primary);
-    color:var(--bg);
+  corner-shape:squircle;
+  box-shadow:var(--shadow-s);
+
+  &.active {
+    background-color: var(--primary);
+    color: var(--bg);
+    box-shadow:var(--shadow-m);
   }
-  &:hover,:focus{
+
+  &:focus,&:hover{
     outline: 2px solid var(--primary);
   }
 }
@@ -84,12 +105,15 @@ input, textarea, select {
   font-family: inherit;
   font-size: 1rem;
   transition: var(--transition);
-  &:focus{
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 2px var(--primary)30;
-  }
 }
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 40%, transparent);
+}
+
 textarea {
   resize: vertical;
   min-height: 6rem;
@@ -120,7 +144,7 @@ pre code {
   border-radius: 0;
 }
 
-ul,ol {
+ul, ol {
   margin-left: 2rem;
   margin-bottom: 1rem;
 }
@@ -134,6 +158,7 @@ table {
   border-collapse: collapse;
   margin-bottom: 1rem;
   background: var(--bg);
+  box-shadow:var(--shadow-s);
 }
 
 th,
@@ -156,6 +181,6 @@ tr:hover {
 nav {
   display: flex;
   gap: 1rem;
-  margin-bottom:8px;
+  margin-bottom: 8px;
 }
 
